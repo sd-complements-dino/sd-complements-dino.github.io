@@ -1,0 +1,136 @@
+<html>
+
+<head>
+  <meta http-equiv="Content-Type" content="text/html; charset=UTF-8">
+  <title>Stable Diffusion Complements DINO for Zero-Shot Semantic Correspondence</title>
+  <link href="./sd_dino_files/style.css" rel="stylesheet">
+  <script type="text/javascript" src="./sd_dino_files/jquery.mlens-1.0.min.js"></script>
+  <script type="text/javascript" src="./sd_dino_files/jquery.js"></script>
+</head>
+
+<body>
+  <div class="content">
+    <h1><strong>A Tale of Two Features: Stable Diffusion Complements DINO for Zero-Shot Semantic Correspondence</strong>
+    </h1>
+    <p id="authors">
+      <span>
+        <a href="https://junyi42.github.io/">Junyi Zhang<sup>1</sup></a>
+      </span>
+      <span>
+        <a href="https://scholar.google.com/citations?user=LQvi5XAAAAAJ">Charles Herrmann<sup>2</sup></a>
+      </span>
+      <span>
+        <a href="https://hurjunhwa.github.io/">Junhwa Hur<sup>2</sup></a>
+      </span>
+      <span>
+        <a href="https://scholar.google.com/citations?user=HGLobX4AAAAJ">Luisa F. Polanía<sup>2</sup></a>
+      </span>
+      <br>
+      <span>
+        <a href="https://varunjampani.github.io/">Varun Jampani<sup>2</sup></a>
+      </span>
+      <span>
+        <a href="https://deqings.github.io/">Deqing Sun<sup>2</sup></a>
+      </span>
+      <span>
+        <a href="https://faculty.ucmerced.edu/mhyang/">Ming-Hsuan Yang<sup>2,3</sup></a>
+      </span>
+      <br><br>
+        <span class="institution"><a href="https://sjtu.edu.cn/"><sup>1</sup> Shanghai Jiao Tong University</a> <a href="https://research.google/"><sup>2</sup> Google Research</a> <a href="https://www.ucmerced.edu/"><sup>3</sup> UC Merced</a></span>
+    </p>
+    
+    <br>
+    <img src="./sd_dino_files/teaser_sd_dino.png" class="teaser-gif" style="width:100%;"><br>
+    <!-- <font size="+1">
+    <h3 style="text-align:center"><center>Semantic correspondence with fused Stable Diffusion and DINO features.</center></h3>
+    </font> -->
+    <a style="text-align:center"><strong>On the left</strong>, we
+demonstrate the accuracy of our correspondences and demonstrate the instance swapping process. From top to
+bottom: Starting with pairs of images (target image in orange box), we fuse Stable Diffusion and DINO features
+to construct robust representations and build high-quality dense correspondence. This facilitates pixel-level
+instance swapping, and a subsequent stable-diffusion-based refinement process yields a plausible swapped
+instance. 
+<strong>On the right</strong>, we demonstrate the robustness of our approach by matching dog, horses, cows, and even
+motorcycles to the cat in the source image. Our approach is capable of building reasonable correspondence even
+when the paired instances exhibit significant differences in categories, shapes, and poses.</a>
+    <font size="+2">
+      <p style="text-align: center;">
+        <a href="https://arxiv.org/abs/2208.12242" target="_blank">[Paper]</a> &nbsp;&nbsp;&nbsp;&nbsp;
+         <a href="https://github.com/google/dreambooth" target="_blank">[Code (coming soon)]</a>
+        &nbsp;&nbsp;&nbsp;&nbsp;
+        <a href="sd_dino_files/bibtex.txt" target="_blank">[BibTeX]</a>
+      </p>
+    </font>
+  </div>
+  <div class="content">
+    <h2 style="text-align:center;">Abstract</h2>
+    <p>Text-to-image diffusion models have made significant advances in generating and editing high-quality images.
+       As a result, numerous approaches have explored the ability of diffusion model features to understand and process single images for downstream tasks, e.g., classification, semantic segmentation, and stylization. 
+       However, significantly less is known about what these features reveal across multiple, different images and objects. 
+       In this work, we exploit Stable Diffusion (SD) features for semantic and dense correspondence and discover that with simple post-processing, SD features can perform quantitatively similar to SOTA representations. 
+       Interestingly, the qualitative analysis reveals that SD features have very different properties compared to existing representation learning features, such as the recently released DINOv2: while DINOv2 provides sparse but accurate matches, SD features provide high-quality spatial information but sometimes inaccurate semantic matches. 
+       We demonstrate that a simple fusion of these two features works surprisingly well, and a zero-shot evaluation using nearest neighbors on these fused features provides a significant performance gain over state-of-the-art methods on benchmark datasets, e.g., SPair-71k, PF-Pascal, and TSS. 
+       We also show that these correspondences can enable interesting applications such as instance swapping in two images.</p>
+  </div>
+  <div class="content">
+    <h2>SD Features for Semantic Correspondence</h2>
+    <p> Internal representations from text-to-image diffusin models can help processing single images, but can it help for multiple, diverse images? 
+      We exploit Stable Diffusion (SD) features for semantic and dense correspondence and discover that with simple post-processing, SD features can perform quantitatively similar to SOTA representations. </p>
+    <br>
+    <img class="summary-img" src="./sd_dino_files/sd_features.png" style="width:75%;"> <br>
+    <h3><center>Analysis of features from different decoder layers in SD</center></h3>
+    <a>
+       <strong>Top</strong>: Visualization of PCA-computed features from early (layer 2), intermediate (layers 5 and 8) and final (layer 11) layers. The first three components of PCA, computed across a pair of segmented instances, serve as color channels. Early layers focus more on semantics, while later layers concentrate on textures. 
+       <strong>Bottom</strong>: K-Means clustering of these features. K-Means clusters are computed for each image individually, followed by an application of the Hungarian method to find the optimal match between clusters. The color in each column represents a pair of matched clusters. 
+        <strong>Last Column</strong>: By ensembling features from early and intermediate layers and applying PCA to reduce the dimensions, we can obtain a more robust representation that is able to capture both semantic and texture information.
+    </a>
+  </div>
+  <div class="content">
+    <h2>SD is Not Perfect? DINOv2 Can Help!</h2>
+    <p> One natural questions is whether SD features provide useful and complementary semantic correspondences with respect to more widely studied discriminative features, e.g., features of recently released DINOv2 model.</p>
+    <br>
+    <img class="summary-img" src="./sd_dino_files/sd_dino_analysis.png" style="width:100%;"> <br>
+    <h3><center>Analysis of different features for correspondence.</center></h3>
+    <a> We present visualization of PCA for the inputs from DAVIS (left) and dense correspondence for SPair-71k (right).
+       The figures show the performance of SD and DINO features under different inputs: identical instance (top left), pure object masks (bottom left), challenging inputs requiring semantic understanding (right top) and spatial information (right bottom).</a>
+    <!-- <br>
+    <img class="summary-img" src="./sd_dino_files/system.png" style="width:100%;"> <br> -->
+  </div>
+
+  <div class="content">
+    <h2>Results</h2>
+    <p>Results for dense correspondence. </p>
+    <img class="summary-img" src="./sd_dino_files/dense_correspondence.png" style="width:100%;">
+  </div>
+
+  <div class="content">
+    <h2>Pixel Warping</h2>
+    <p>Results for pixel warping. </p>
+    <img class="summary-img" src="./sd_dino_files/pixel_warp_plane15.gif" style="width:100%;">
+  </div>
+
+  <div class="content">
+    <h2>Instance Swapping</h2>
+    <p>Results for instance swapping. </p>
+    <img class="summary-img" src="./sd_dino_files/instance_swapping.png" style="width:100%;">
+  </div>
+  
+  <div class="content">
+    <h2>BibTex</h2>
+    <!-- <code> @article{ruiz2022dreambooth,<br>
+  &nbsp;&nbsp;title={DreamBooth: Fine Tuning Text-to-image Diffusion Models for Subject-Driven Generation},<br>
+  &nbsp;&nbsp;author={Ruiz, Nataniel and Li, Yuanzhen and Jampani, Varun and Pritch, Yael and Rubinstein, Michael and Aberman, Kfir},<br>
+  &nbsp;&nbsp;booktitle={arXiv preprint arxiv:2208.12242},<br>
+  &nbsp;&nbsp;year={2022}<br>
+  } </code> -->
+  <code>Placeholder</code>
+  </div>
+  <div class="content" id="acknowledgements">
+    <p><strong>Acknowledgements</strong>:
+      We borrow the template from Dreanbooth.
+      <!-- Recycling a familiar <a href="https://chail.github.io/latent-composition/">template</a> ;). -->
+    </p>
+  </div>
+</body>
+
+</html>
