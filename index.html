@@ -73,10 +73,9 @@ when the paired instances exhibit significant differences in categories, shapes,
   </div>
   <div class="content">
     <h2>SD Features for Semantic Correspondence</h2>
-    <p> Internal representations from text-to-image diffusin models can help processing single images, but can it help for multiple, diverse images? 
-      We exploit Stable Diffusion (SD) features for semantic and dense correspondence and discover that with simple post-processing, SD features can perform quantitatively similar to SOTA representations. </p>
-    <br>
-    <img class="summary-img" src="./sd_dino_files/sd_features.png" style="width:75%;"> <br>
+    <p> Could internal representations from text-to-image diffusion models contribute to processing multiple, diverse images? We delve into the application of Stable Diffusion (SD) features for semantic and dense correspondence. 
+      Remarkably, our findings indicate that with straightforward post-processing, SD features can compete on a similar quantitative level as State-of-the-Art representations. </p>
+    <img class="summary-img" src="./sd_dino_files/sd_features.png" style="width:80%;"> 
     <h3><center>Analysis of features from different decoder layers in SD</center></h3>
     <a>
        <strong>Top</strong>: Visualization of PCA-computed features from early (layer 2), intermediate (layers 5 and 8) and final (layer 11) layers. The first three components of PCA, computed across a pair of segmented instances, serve as color channels. Early layers focus more on semantics, while later layers concentrate on textures. 
@@ -85,15 +84,19 @@ when the paired instances exhibit significant differences in categories, shapes,
     </a>
   </div>
   <div class="content">
-    <h2>SD is Not Perfect? DINOv2 Can Help!</h2>
-    <p> One natural questions is whether SD features provide useful and complementary semantic correspondences with respect to more widely studied discriminative features, e.g., features of recently released DINOv2 model.</p>
-    <br>
-    <img class="summary-img" src="./sd_dino_files/sd_dino_analysis.png" style="width:100%;"> <br>
+    <h2>SD's Shortcomings? DINOv2 to the Rescue!</h2>
+    <p> An intriguing question arises - could SD features offer valuable and complementary semantic correspondences compared to widely explored discriminative features, such as those from the newly released DINOv2 model?</p>
+    <img class="summary-img" src="./sd_dino_files/sd_dino_analysis.png" style="width:100%;"> 
     <h3><center>Analysis of different features for correspondence.</center></h3>
     <a> We present visualization of PCA for the inputs from DAVIS (left) and dense correspondence for SPair-71k (right).
        The figures show the performance of SD and DINO features under different inputs: identical instance (top left), pure object masks (bottom left), challenging inputs requiring semantic understanding (right top) and spatial information (right bottom).</a>
-    <!-- <br>
-    <img class="summary-img" src="./sd_dino_files/system.png" style="width:100%;"> <br> -->
+    <br>
+    <p> We observe that SD features have a strong sense of spatial layout and generate smooth correspondences, but its pixel level matching between two objects can often be inaccurate. 
+      While DINOv2 generates sparse but accurate matches, which surprisingly, form a natural complement to the higher spatial information from SD features.</p>
+    
+    <img class="summary-img" src="./sd_dino_files/sweep_alpha.png" style="width:100%;"> 
+    <h3><center>Visualization of the dense correspondence across varying fusion weights.</center></h3>
+    <p>We demonstrate that by simply normalizing both features and then concantenating the two, the fused representation can utilize the strengths of both feature types (the numbers in the figure denote the fusion weight, with a balance between the two types of features achieved at a weight of 0.5).</p>
   </div>
 
   <div class="content">
