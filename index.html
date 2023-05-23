@@ -8,10 +8,10 @@
   <script type="text/javascript" src="./sd_dino_files/jquery.js"></script>
   <style>
     .divider {
-        border-right: 2px dashed #737373;
-        width: 2px;
+      border-right: 2px dashed #737373;
+      width: 2px;
     }
-</style>
+  </style>
 </head>
 
 <body>
@@ -42,27 +42,31 @@
         <a href="https://faculty.ucmerced.edu/mhyang/">Ming-Hsuan Yang<sup>2,3</sup></a>
       </span>
       <br><br>
-        <span class="institution"><a href="https://sjtu.edu.cn/"><sup>1</sup> Shanghai Jiao Tong University</a> <a href="https://research.google/"><sup>2</sup> Google Research</a> <a href="https://www.ucmerced.edu/"><sup>3</sup> UC Merced</a></span>
+      <span class="institution"><a href="https://sjtu.edu.cn/"><sup>1</sup> Shanghai Jiao Tong University</a> <a
+          href="https://research.google/"><sup>2</sup> Google Research</a> <a
+          href="https://www.ucmerced.edu/"><sup>3</sup> UC Merced</a></span>
     </p>
-    
+
     <br>
     <img src="./sd_dino_files/teaser_sd_dino.png" class="teaser-gif" style="width:100%;"><br>
     <!-- <font size="+1">
     <h3 style="text-align:center"><center>Semantic correspondence with fused Stable Diffusion and DINO features.</center></h3>
     </font> -->
     <a style="text-align:center"><strong>On the left</strong>, we
-demonstrate the accuracy of our correspondences and demonstrate the instance swapping process. From top to
-bottom: Starting with pairs of images (source image in orange box), we fuse Stable Diffusion and DINO features
-to construct robust representations and build high-quality dense correspondence. This facilitates pixel-level
-instance swapping, and a subsequent stable-diffusion-based refinement process yields a plausible swapped
-instance. 
-<strong>On the right</strong>, we demonstrate the robustness of our approach by matching dog, horses, cows, and even
-motorcycles to the cat in the source image. Our approach is capable of building reasonable correspondence even
-when the paired instances exhibit significant differences in categories, shapes, and poses.</a>
+      demonstrate the accuracy of our correspondences and demonstrate the instance swapping process. From top to
+      bottom: Starting with pairs of images (source image in orange box), we fuse Stable Diffusion and DINO features
+      to construct robust representations and build high-quality dense correspondence. This facilitates pixel-level
+      instance swapping, and a subsequent stable-diffusion-based refinement process yields a plausible swapped
+      instance.
+      <strong>On the right</strong>, we demonstrate the robustness of our approach by matching dog, horses, cows, and
+      even
+      motorcycles to the cat in the source image. Our approach is capable of building reasonable correspondence even
+      when the paired instances exhibit significant differences in categories, shapes, and poses.</a>
     <font size="+2">
       <p style="text-align: center;">
         <a href="https://arxiv.org/abs/2208.12242" target="_blank">[Paper (coming soon)]</a> &nbsp;&nbsp;&nbsp;&nbsp;
-         <a href="https://sd-complements-dino.github.io/" target="_blank">[Code (coming soon)]</a> &nbsp;&nbsp;&nbsp;&nbsp;
+        <a href="https://sd-complements-dino.github.io/" target="_blank">[Code (coming soon)]</a>
+        &nbsp;&nbsp;&nbsp;&nbsp;
         <a href="sd_dino_files/bibtex.txt" target="_blank">[BibTeX]</a>
       </p>
     </font>
@@ -70,39 +74,68 @@ when the paired instances exhibit significant differences in categories, shapes,
   <div class="content">
     <h2 style="text-align:center;">Abstract</h2>
     <p>Text-to-image diffusion models have made significant advances in generating and editing high-quality images.
-       As a result, numerous approaches have explored the ability of diffusion model features to understand and process single images for downstream tasks, e.g., classification, semantic segmentation, and stylization. 
-       However, significantly less is known about what these features reveal across multiple, different images and objects. 
-       In this work, we exploit Stable Diffusion (SD) features for semantic and dense correspondence and discover that with simple post-processing, SD features can perform quantitatively similar to SOTA representations. 
-       Interestingly, the qualitative analysis reveals that SD features have very different properties compared to existing representation learning features, such as the recently released DINOv2: while DINOv2 provides sparse but accurate matches, SD features provide high-quality spatial information but sometimes inaccurate semantic matches. 
-       We demonstrate that a simple fusion of these two features works surprisingly well, and a zero-shot evaluation using nearest neighbors on these fused features provides a significant performance gain over state-of-the-art methods on benchmark datasets, e.g., SPair-71k, PF-Pascal, and TSS. 
-       We also show that these correspondences can enable interesting applications such as instance swapping in two images.</p>
+      As a result, numerous approaches have explored the ability of diffusion model features to understand and process
+      single images for downstream tasks, e.g., classification, semantic segmentation, and stylization.
+      However, significantly less is known about what these features reveal across multiple, different images and
+      objects.
+      In this work, we exploit Stable Diffusion (SD) features for semantic and dense correspondence and discover that
+      with simple post-processing, SD features can perform quantitatively similar to SOTA representations.
+      Interestingly, the qualitative analysis reveals that SD features have very different properties compared to
+      existing representation learning features, such as the recently released DINOv2: while DINOv2 provides sparse but
+      accurate matches, SD features provide high-quality spatial information but sometimes inaccurate semantic matches.
+      We demonstrate that a simple fusion of these two features works surprisingly well, and a zero-shot evaluation
+      using nearest neighbors on these fused features provides a significant performance gain over state-of-the-art
+      methods on benchmark datasets, e.g., SPair-71k, PF-Pascal, and TSS.
+      We also show that these correspondences can enable interesting applications such as instance swapping in two
+      images.</p>
   </div>
   <div class="content">
     <h2>SD Features for Semantic Correspondence</h2>
-    <p> Could internal representations from text-to-image diffusion models contribute to processing multiple, diverse images? We delve into the application of Stable Diffusion (SD) features for semantic and dense correspondence. 
-      Remarkably, our findings indicate that with straightforward post-processing, SD features can compete on a similar quantitative level as State-of-the-Art representations. </p>
-    <img class="summary-img" src="./sd_dino_files/sd_features.png" style="width:80%;"> 
-    <h3><center>Analysis of features from different decoder layers in SD</center></h3>
+    <p> Could internal representations from text-to-image diffusion models contribute to processing multiple, diverse
+      images? We delve into the application of Stable Diffusion (SD) features for semantic and dense correspondence.
+      Remarkably, our findings indicate that with straightforward post-processing, SD features can compete on a similar
+      quantitative level as State-of-the-Art representations. </p>
+    <img class="summary-img" src="./sd_dino_files/sd_features.png" style="width:80%;">
+    <h3>
+      <center>Analysis of features from different decoder layers in SD</center>
+    </h3>
     <a>
-       <strong>Top</strong>: Visualization of PCA-computed features from early (layer 2), intermediate (layers 5 and 8) and final (layer 11) layers. The first three components of PCA, computed across a pair of segmented instances, serve as color channels. Early layers focus more on semantics, while later layers concentrate on textures. 
-       <strong>Bottom</strong>: K-Means clustering of these features. K-Means clusters are computed for each image individually, followed by an application of the Hungarian method to find the optimal match between clusters. The color in each column represents a pair of matched clusters. 
-        <strong>Last Column</strong>: By ensembling features from early and intermediate layers and applying PCA to reduce the dimensions, we can obtain a more robust representation that is able to capture both semantic and texture information.
+      <strong>Top</strong>: Visualization of PCA-computed features from early (layer 2), intermediate (layers 5 and 8)
+      and final (layer 11) layers. The first three components of PCA, computed across a pair of segmented instances,
+      serve as color channels. Early layers focus more on semantics, while later layers concentrate on textures.
+      <strong>Bottom</strong>: K-Means clustering of these features. K-Means clusters are computed for each image
+      individually, followed by an application of the Hungarian method to find the optimal match between clusters. The
+      color in each column represents a pair of matched clusters.
+      <strong>Last Column</strong>: By ensembling features from early and intermediate layers and applying PCA to reduce
+      the dimensions, we can obtain a more robust representation that is able to capture both semantic and texture
+      information.
     </a>
   </div>
   <div class="content">
     <h2>SD's Shortcomings? DINOv2 to the Rescue!</h2>
-    <p> An intriguing question arises - could SD features offer valuable and complementary semantic correspondences compared to widely explored discriminative features, such as those from the newly released DINOv2 model?</p>
-    <img class="summary-img" src="./sd_dino_files/sd_dino_analysis.png" style="width:100%;"> 
-    <h3><center>Analysis of different features for correspondence.</center></h3>
+    <p> An intriguing question arises - could SD features offer valuable and complementary semantic correspondences
+      compared to widely explored discriminative features, such as those from the newly released DINOv2 model?</p>
+    <img class="summary-img" src="./sd_dino_files/sd_dino_analysis.png" style="width:100%;">
+    <h3>
+      <center>Analysis of different features for correspondence.</center>
+    </h3>
     <a> We present visualization of PCA for the inputs from DAVIS (left) and dense correspondence for SPair-71k (right).
-       The figures show the performance of SD and DINO features under different inputs: identical instance (top left), pure object masks (bottom left), challenging inputs requiring semantic understanding (right top) and spatial information (right bottom).</a>
+      The figures show the performance of SD and DINO features under different inputs: identical instance (top left),
+      pure object masks (bottom left), challenging inputs requiring semantic understanding (right top) and spatial
+      information (right bottom).</a>
     <br>
-    <p> Our qualitative analysis reveals that SD features have a strong sense of spatial layout and generate smooth correspondences, but its pixel level matching between two objects can often be inaccurate. 
-      While DINOv2 generates sparse but accurate matches, which surprisingly, form a natural complement to the higher spatial information from SD features.</p>
-    
-    <img class="summary-img" src="./sd_dino_files/sweep_alpha.png" style="width:100%;"> 
-    <h3><center>Visualization of the dense correspondence across varying fusion weights.</center></h3>
-    <p>We demonstrate that by simply normalizing both features and then concantenating the two, the fused representation can utilize the strengths of both feature types (the numbers in the figure denote the fusion weight, with a balance between the two types of features achieved at a weight of 0.5).</p>
+    <p> Our qualitative analysis reveals that SD features have a strong sense of spatial layout and generate smooth
+      correspondences, but its pixel level matching between two objects can often be inaccurate.
+      While DINOv2 generates sparse but accurate matches, which surprisingly, form a natural complement to the higher
+      spatial information from SD features.</p>
+
+    <img class="summary-img" src="./sd_dino_files/sweep_alpha.png" style="width:100%;">
+    <h3>
+      <center>Visualization of the dense correspondence across varying fusion weights.</center>
+    </h3>
+    <p>We demonstrate that by simply normalizing both features and then concantenating the two, the fused representation
+      can utilize the strengths of both feature types (the numbers in the figure denote the fusion weight, with a
+      balance between the two types of features achieved at a weight of 0.5).</p>
   </div>
 
   <div class="content">
@@ -112,47 +145,101 @@ when the paired instances exhibit significant differences in categories, shapes,
   </div>
 
   <div class="content" id="content">
-    <!-- <img class="summary-img" src="./sd_dino_files/pixel_warp_plane15.gif" style="width:100%;"> -->
-    <script>
-      // pre-list all the image files under gif_cropped folder
-      var allFiles = ["aer0.gif", "aer1.gif", "aer2.gif", "aer3.gif", "aer4.gif", "bik4.gif", "bik5.gif", "bik6.gif", "bik7.gif", "bir10.gif", "bir11.gif", "bir12.gif", "bir8.gif", "bir9.gif", "boa13.gif", "boa14.gif", "boa15.gif", "boa16.gif", "bot17.gif", "bot18.gif", "bot19.gif", "bus20.gif", "bus21.gif", "bus22.gif", "bus23.gif", "bus24.gif", "bus25.gif", "car26.gif", "car27.gif", "car28.gif", "car29.gif", "car30.gif", "car31.gif", "cat32.gif", "cat33.gif", "cat34.gif", "cat35.gif", "cat36.gif", "cat37.gif", "cat38.gif", "cha39.gif", "cha40.gif", "cha41.gif", "cow42.gif", "cow43.gif", "cow44.gif", "cow45.gif", "cow46.gif", "cow47.gif", "dog48.gif", "dog49.gif", "dog50.gif", "dog51.gif", "hor52.gif", "hor53.gif", "hor54.gif", "hor55.gif", "mot56.gif", "mot57.gif", "mot58.gif", "mot59.gif", "mot60.gif", "per61.gif", "per62.gif", "per63.gif", "per64.gif", "pla65.gif", "pla66.gif", "pla67.gif", "pla68.gif", "she69.gif", "she70.gif", "she71.gif", "she72.gif", "she73.gif", "she74.gif", "tra75.gif", "tra76.gif", "tra77.gif", "tra78.gif", "tra79.gif", "tra80.gif", "tra81.gif", "tv182.gif", "tv183.gif", "tv184.gif", "tv185.gif", "tv186.gif", "tv787.gif", "tv_88.gif"];
-      
-      // randomly select 20 files
-      var selectedFiles = [];
-      for (var i = 0; i < 20; i++) {
-          var randomIndex = Math.floor(Math.random() * allFiles.length);
-          selectedFiles.push(allFiles.splice(randomIndex, 1)[0]);
-      }
-      
+    <div id="contentWrapper">
+      <button id="prevButton" onclick="prevPage()">&#8249;</button>
+      <div id="gif-display"></div>
+      <button id="nextButton" onclick="nextPage()">&#8250;</button>
+    </div>
+    <div id="navBar">
+      <div class="navDot" id="dot0" onclick="goToPage(0)"></div>
+      <div class="navDot" id="dot1" onclick="goToPage(1)"></div>
+      <div class="navDot" id="dot2" onclick="goToPage(2)"></div>
+      <div class="navDot" id="dot3" onclick="goToPage(3)"></div>
+      <div class="navDot" id="dot4" onclick="goToPage(4)"></div>
+    </div>
+  </div>
+
+
+
+  <script>
+    // pre-list all the image files under gif_cropped folder
+    var allFiles = ["aer0.gif", "aer1.gif", "aer2.gif", "aer3.gif", "aer4.gif", "bik4.gif", "bik5.gif", "bik6.gif", "bik7.gif", "bir10.gif", "bir11.gif", "bir12.gif", "bir8.gif", "bir9.gif", "boa13.gif", "boa14.gif", "boa15.gif", "boa16.gif", "bot17.gif", "bot18.gif", "bot19.gif", "bus20.gif", "bus21.gif", "bus22.gif", "bus23.gif", "bus24.gif", "bus25.gif", "car26.gif", "car27.gif", "car28.gif", "car29.gif", "car30.gif", "car31.gif", "cat32.gif", "cat33.gif", "cat34.gif", "cat35.gif", "cat36.gif", "cat37.gif", "cat38.gif", "cha39.gif", "cha40.gif", "cha41.gif", "cow42.gif", "cow43.gif", "cow44.gif", "cow45.gif", "cow46.gif", "cow47.gif", "dog48.gif", "dog49.gif", "dog50.gif", "dog51.gif", "hor52.gif", "hor53.gif", "hor54.gif", "hor55.gif", "mot56.gif", "mot57.gif", "mot58.gif", "mot59.gif", "mot60.gif", "per61.gif", "per62.gif", "per63.gif", "per64.gif", "pla65.gif", "pla66.gif", "pla67.gif", "pla68.gif", "she69.gif", "she70.gif", "she71.gif", "she72.gif", "she73.gif", "she74.gif", "tra75.gif", "tra76.gif", "tra77.gif", "tra78.gif", "tra79.gif", "tra80.gif", "tra81.gif", "tv182.gif", "tv183.gif", "tv184.gif", "tv185.gif", "tv186.gif", "tv787.gif", "tv_88.gif"];
+
+    var page = 0; // current page
+
+    function goToPage(p) {
+      page = p;
+      showPage();
+    }
+    // Create a copy of the allFiles array
+    var shuffledFiles = allFiles.slice();
+
+    // Fisher-Yates Shuffle
+    for (let i = shuffledFiles.length - 1; i > 0; i--) {
+      let j = Math.floor(Math.random() * (i + 1)); // random index from 0 to i
+
+      // swap elements i and j
+      [shuffledFiles[i], shuffledFiles[j]] = [shuffledFiles[j], shuffledFiles[i]];
+    }
+    function showPage() {
+      var selectedFiles = shuffledFiles.slice(page * 18, (page + 1) * 18);
+
       // construct a html string to show these images
-      var htmlStr = '<h2>Pixel Warping</h2><p>Results for pixel warping (refresh to view more results). </p><table>';
+      var htmlStr = '<h2>Pixel Warping</h2><p>Results for pixel warping (click left/right arrow or navigate dots to view more results). </p><table>';
       for (var i = 0; i < selectedFiles.length; i += 2) {
-          htmlStr += '<tr>';
-          for (var j = 0; j < 2; j++) {
-              if (i + j < selectedFiles.length) {
-                  var file = selectedFiles[i + j];
-                  htmlStr += '<td><img class="summary-img" src="./gif_cropped/' + file + '" style="width:100%;"></td>';
-                  if (j == 0 && i + j + 1 < selectedFiles.length) {
-                    // add a divider (dash line)
-                    htmlStr += '<td class="divider"></td>';
-                  }
-              }
+        htmlStr += '<tr>';
+        for (var j = 0; j < 2; j++) {
+          if (i + j < selectedFiles.length) {
+            var file = selectedFiles[i + j];
+            htmlStr += '<td><img class="summary-img" src="./gif_cropped/' + file + '" style="width:100%;"></td>';
+            if (j == 0 && i + j + 1 < selectedFiles.length) {
+              // add a divider (dash line)
+              htmlStr += '<td class="divider"></td>';
+            }
           }
-          htmlStr += '</tr>';
+        }
+        htmlStr += '</tr>';
       }
       htmlStr += '</table>';
-
       // add these images to a div with id 'content'
-      document.getElementById('content').innerHTML = htmlStr;
-      </script>
-  </div>
+      document.getElementById('gif-display').innerHTML = htmlStr;
+
+      // update navigation dots
+      for (var i = 0; i < 5; i++) {
+        var dot = document.getElementById('dot' + i);
+        if (i == page) {
+          dot.classList.add('navDotSelected');
+        } else {
+          dot.classList.remove('navDotSelected');
+        }
+      }
+    }
+
+    function prevPage() {
+      if (page > 0) {
+        page--;
+        // add these images to a div with id 'con
+        showPage();
+      }
+    }
+
+    function nextPage() {
+      if (page < allFiles.length / 18 - 1) {
+        page++;
+        showPage();
+      }
+    }
+
+    // Show the first page when the script is first run
+    showPage();
+  </script>
 
   <div class="content">
     <h2>Instance Swapping</h2>
     <p>Results for instance swapping. </p>
     <img class="summary-img" src="./sd_dino_files/instance_swapping.png" style="width:100%;">
   </div>
-  
+
   <div class="content">
     <h2>BibTex</h2>
     <!-- <code> @article{ruiz2022dreambooth,<br>
@@ -161,7 +248,7 @@ when the paired instances exhibit significant differences in categories, shapes,
   &nbsp;&nbsp;booktitle={arXiv preprint arxiv:2208.12242},<br>
   &nbsp;&nbsp;year={2022}<br>
   } </code> -->
-  <code>Placeholder</code>
+    <code>Placeholder</code>
   </div>
   <div class="content" id="acknowledgements">
     <p><strong>Acknowledgements</strong>:

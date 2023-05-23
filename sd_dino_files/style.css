@@ -28,6 +28,70 @@ body {
   box-shadow: 0px 0px 10px #999;
   border-radius: 15px;
 }
+#gif-display {
+  width: 950px;
+  margin: 0 auto;
+  padding: 0;
+}
+
+#contentWrapper {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+}
+
+
+#prevButton, #nextButton {
+  padding: 10px;
+  background-color: #ddd;
+  border: none;
+  border-radius: 50%;
+  cursor: pointer;
+  font-size: 2em;
+}
+
+#navBar {
+  position: relative;
+  bottom: 0px;
+  width: 100%;
+  text-align: center;
+}
+
+.navDot {
+  display: inline-block;
+  width: 10px;
+  height: 10px;
+  margin: 0 5px;
+  background-color: #ddd;
+  border-radius: 50%;
+}
+.navDotSelected {
+  background-color: #555;
+}
+.navDot:hover {
+  background-color: #aaa;
+  cursor: pointer;
+}
+
+.nav-arrows {
+  display: flex;
+  justify-content: space-between;
+  width: 100%;
+}
+
+.nav-button {
+  padding: 10px;
+  background-color: #cfcece;
+  border: none;
+  border-radius: 50%;
+  cursor: pointer;
+}
+#prevArrow {
+  transform: rotate(180deg);
+}
+
+#nextArrow {
+}
 a, a:visited {
   color: #224b8d;
   font-weight: 300;
