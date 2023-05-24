@@ -12,6 +12,15 @@
       width: 2px;
     }
   </style>
+  <style>
+    .divider_horizontal {
+      border-top: 2px dashed #737373;
+      display: block;
+      width: 100%;
+      margin: 10px 0;
+    }
+  </style>
+  
 </head>
 
 <body>
@@ -143,7 +152,7 @@
     <p>Results for dense correspondence. </p>
     <img class="summary-img" src="./sd_dino_files/dense_correspondence.png" style="width:100%;">
   </div>
-
+  
   <div class="content" id="content">
     <div id="contentWrapper">
       <button id="prevButton" onclick="prevPage()">&#8249;</button>
@@ -234,11 +243,25 @@
     showPage();
   </script>
 
-  <div class="content">
-    <h2>Instance Swapping</h2>
-    <p>Results for instance swapping. </p>
-    <img class="summary-img" src="./sd_dino_files/instance_swapping.png" style="width:100%;">
-  </div>
+<div class="content">
+  <h2>Instance Swapping</h2>
+  <p>Results for instance swapping. </p>
+  <img class="summary-img" src="./sd_dino_files/instance_swapping.png" style="width:90%;">
+  <br>
+  <span class="divider_horizontal"></span>
+  <br>
+  <img class="summary-img" src="./sd_dino_files/instance_swapping_bird.png" style="width:90%;">
+  <br>
+  <span class="divider_horizontal"></span>
+  <br>
+  <img class="summary-img" src="./sd_dino_files/instance_swapping_dog.png" style="width:90%;">
+  <br>
+  <span class="divider_horizontal"></span>
+  <br>
+  <img class="summary-img" src="./sd_dino_files/instance_swapping_sheep.png" style="width:90%;">
+</div>
+
+
 
   <div class="content">
     <h2>BibTex</h2>
