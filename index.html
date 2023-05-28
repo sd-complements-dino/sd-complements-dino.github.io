@@ -230,11 +230,19 @@
         // add these images to a div with id 'con
         showPage();
       }
+      if (page == 0){
+      page= allFiles.length / 18 - 1;
+        showPage();
+      }
     }
 
     function nextPage() {
       if (page < allFiles.length / 18 - 1) {
         page++;
+        showPage();
+      }
+      if (page == allFiles.length / 18 - 1) {
+      page=0;
         showPage();
       }
     }
