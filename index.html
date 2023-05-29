@@ -230,7 +230,7 @@
         // add these images to a div with id 'con
         showPage();
       }
-      if (page == 0){
+      else if (page == 0){
       page= allFiles.length / 18 - 1;
         showPage();
       }
@@ -241,7 +241,7 @@
         page++;
         showPage();
       }
-      if (page == allFiles.length / 18 - 1) {
+      else if (page == allFiles.length / 18 - 1) {
       page=0;
         showPage();
       }
